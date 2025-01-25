@@ -20,9 +20,8 @@ class PostController extends Controller
         //     'message' => 'Post retrived successfully',
         //     'data' => PostResource::collection($post)
         // ],200);
-
         // with pagination.
-        $post = Post::paginate(5);
+        $post = Post::with('comments')->paginate(5);
         return response()->json([
             'status' => true,
             'message' => 'Post retrived successfully',
