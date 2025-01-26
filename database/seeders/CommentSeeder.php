@@ -16,19 +16,19 @@ class CommentSeeder extends Seeder
         $comments = [
             [
                 'comment' => 'This is a comment',
-                'post_id' => 2,
+                'post_id' => 1,
             ],
             [
                 'comment' => 'This is another comment',
-                'post_id' => 2,
+                'post_id' => 1,
             ],
             [
                 'comment' => 'This is a third comment',
-                'post_id' => 2,
+                'post_id' => 1,
             ],
             [
                 'comment' => 'This is a comment',
-                'post_id' => 2,
+                'post_id' => 1,
             ],
             [
                 'comment' => 'This is another comment',
