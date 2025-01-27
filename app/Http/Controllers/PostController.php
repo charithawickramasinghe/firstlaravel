@@ -14,13 +14,6 @@ class PostController extends Controller
      */
     public function index()
     {
-        // $post = Post::all();
-        // return response()->json([
-        //     'status' => true,
-        //     'message' => 'Post retrived successfully',
-        //     'data' => PostResource::collection($post)
-        // ],200);
-        // with pagination.
         $post = Post::with('comments')->paginate(5);
         return response()->json([
             'status' => true,

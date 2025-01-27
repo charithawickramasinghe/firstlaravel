@@ -14,7 +14,12 @@ return new class extends Migration
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('age');
+            $table->string('email')->unique();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('password');
+            $table->integer('age')->nullable();
+            $table->string('api_key')->nullable();
             $table->timestamps();
         });
     }
