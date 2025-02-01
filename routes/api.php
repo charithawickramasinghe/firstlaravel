@@ -18,5 +18,7 @@ Route::post('/author-register', [AuthorController::class, 'registerAuthor']);
 
 Route::post('/author-login', [AuthorController::class, 'loginAuthor']);
 Route::post('/author-logout', [AuthorController::class, 'logoutAuthor']);
-Route::post('/author-update', [AuthorController::class, 'updateAuthor'])->middleware(Authenticate::class);
-Route::get('/author-view/{id}', [AuthorController::class, 'showAuthor'])->middleware(Authenticate::class);
+Route::put('/author-update/{id}', [AuthorController::class, 'updateAuthor']);//->middleware(Authenticate::class);
+Route::delete('/author-delete/{id}', [AuthorController::class, 'deleteAuthor']);
+Route::get('/author-view/{id}', [AuthorController::class, 'showAuthor']); //->middleware(Authenticate::class);
+Route::get('/author-viewall', [AuthorController::class, 'showAuthors']);
