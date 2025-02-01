@@ -25,20 +25,47 @@ class AuthorController extends Controller
             'api_key' => Str::random(32),
         ]);
 
-        return response()->json([
-            'message' => 'Author registered successfully',
-            'author' => new AuthorResource($author),
-        ],200);
+        // return response()->json([
+        //     'message' => 'Author registered successfully',
+        //     'author' => new AuthorResource($author),
+        // ],200);
     }
 
     public function loginAuthor(Request $request)
     {
+        $validator = Validator::make ($request->all(),[
+            'email' => 'required|email',
+            'password' => 'required|string'
+        ]);
 
+        if($validator->fails()){
+            return response()->json([
+                'status' => false,
+                'message' => 'All fields are required',
+                'errors' => $validator->errors()
+            ],422);
+        }
+
+        $author = Author::where('email', $request->email)->first();
+
+        if(!$author || !Hash::check($request->password, $author->password)){
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid email or password'
+            ],401);
+        }
+        else{
+            return response()->json([
+                'status' => true,
+                'message' => 'Author logged in successfully',
+                'data' => new AuthorResource($author)
+            ],200);
+        }
     }
 
     public function logoutAuthor(Request $request)
     {
-
+        return 'Auther logout';
     }
 
     public function updateAuthor(Request $request, $id)
