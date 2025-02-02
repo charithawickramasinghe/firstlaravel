@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterAuthorRequest;
 use App\Http\Resources\AuthorResource;
 use App\Models\Author;
@@ -31,20 +32,8 @@ class AuthorController extends Controller
         // ],200);
     }
 
-    public function loginAuthor(Request $request)
+    public function loginAuthor(LoginRequest $request)
     {
-        $validator = Validator::make ($request->all(),[
-            'email' => 'required|email',
-            'password' => 'required|string'
-        ]);
-
-        if($validator->fails()){
-            return response()->json([
-                'status' => false,
-                'message' => 'All fields are required',
-                'errors' => $validator->errors()
-            ],422);
-        }
 
         $author = Author::where('email', $request->email)->first();
 
@@ -70,6 +59,8 @@ class AuthorController extends Controller
 
     public function updateAuthor(Request $request, $id)
     {
+        // dd($request);
+
         $validator = Validator::make ($request->all(),[
             'name' => 'required|string|min:3|max:255',
             'email' => 'required|email',
