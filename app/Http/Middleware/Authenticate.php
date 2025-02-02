@@ -17,9 +17,7 @@ class Authenticate
     public function handle(Request $request, Closure $next): Response
     {
 
-        $apikey = $request->header('x-api-key');
-
-        dd($apikey);
+        $apikey = $request->header('X-API-KEY');
 
         if(!$apikey){
             return response()->json([
